@@ -38,18 +38,19 @@ if (count($pesan_datang) > 2) {
 
 #-------------------------[Function]-------------------------#
 function cuaca($keyword) {
-    $uri = "http://api.openweathermap.org/data/2.5/weather?q=" . $keyword . ",ID&units=metric&appid=e172c2f3a3c620591582ab5242e0e6c4";
+    $date = date("Y-m-d");
+    $uri = "https://api.banghasan.com/sholat/format/json/jadwal/kota/703/tanggal/$date";
 
     $response = Unirest\Request::get("$uri");
 
     $json = json_decode($response->raw_body, true);
-    $result = "Halo Kak ^_^ Ini ada Ramalan Cuaca Untuk Daerah ";
-	$result .= $json['name'];
-	$result .= " Dan Sekitarnya";
-	$result .= "\n\nCuaca : ";
-	$result .= $json['weather']['1']['main'];
-	$result .= "\nDeskripsi : ";
-	$result .= $json['weather']['1']['description'];
+    $result = "Halo Kak ^_^ Ini ada jadwal shalat untuk kota Depok ";
+	$result .= $json['jadwal']['data']['tanggal'];
+	$result .= "\n\nSubuh " . " " . $json['jadwal']['data']['subuh'];
+	$result .= "\nDzuhur " . " " . $json['jadwal']['data']['dzuhur'];
+	$result .= "\nAshar " . " " . $json['jadwal']['data']['ashar'];
+	$result .= "\nMaghrib " . " " . $json['jadwal']['data']['maghrib'];
+	$result .= "\nIsya " . " " . $json['jadwal']['data']['isya'];
     return $result;
 }
 #-------------------------[Function]-------------------------#
@@ -76,7 +77,7 @@ if ($type == 'join' || $command == '/menu') {
 
 //pesan bergambar
 if($message['type']=='text') {
-	    if ($command == '/cuaca') {
+	    if ($command == '/jadwal') {
 
         $result = cuaca($options);
         $balas = array(
