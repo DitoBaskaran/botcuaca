@@ -38,19 +38,19 @@ if (count($pesan_datang) > 2) {
 
 #-------------------------[Function]-------------------------#
 function cuaca($keyword) {
-    $date = date("Y-m-d");
-    $uri = "https://api.banghasan.com/sholat/format/json/jadwal/kota/703/tanggal/$date";
+    $date = date("d M Y");
+    $uri = "https://time.siswadi.com/pray/$keyword";
 
     $response = Unirest\Request::get("$uri");
 
     $json = json_decode($response->raw_body, true);
-    $result = "Halo Kak ^_^ Ini ada jadwal shalat untuk kota Depok ";
-	$result .= $json['jadwal']['data']['tanggal'];
-	$result .= "\n\nSubuh " . " " . $json['jadwal']['data']['subuh'];
-	$result .= "\nDzuhur " . " " . $json['jadwal']['data']['dzuhur'];
-	$result .= "\nAshar " . " " . $json['jadwal']['data']['ashar'];
-	$result .= "\nMaghrib " . " " . $json['jadwal']['data']['maghrib'];
-	$result .= "\nIsya " . " " . $json['jadwal']['data']['isya'];
+    $result = "Jadwal Shalat Kota $keyword Hari Ini";
+        $result .= "\n" . $date;
+        $result .= "\n\nSubuh " . ": " . $json_result['data']['Fajr'];
+        $result .= "\nDzuhur " . ": " . $json_result['data']['Dhuhr'];
+        $result .= "\nAshar " . ": " . $json_result['data']['Asr'];
+        $result .= "\nMaghrib " . ": " . $json_result['data']['Maghrib'];
+        $result .= "\nIsya " . ": " . $json_result['data']['Isha'];
     return $result;
 }
 #-------------------------[Function]-------------------------#
