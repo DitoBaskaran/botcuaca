@@ -54,7 +54,7 @@ function cuaca($keyword) {
     return $result;
 }
 
-function moviePoster($keyword) {
+function moviep($keyword) {
     $date = date("d M Y");
     $uri = "https://time.siswadi.com/pray/" . $keyword;
 
@@ -92,6 +92,23 @@ if ($type == 'join' || $command == '/menu') {
     );
 }
 
+if ($message['type']=='text') {
+	    if ($command == '/moviep') {
+
+        $result = moviep($options);
+        $balas = array(
+            'replyToken' => $replyToken,
+            'messages' => array(
+                array(
+                    'type' => 'text',
+                    'text' => $result
+                )
+            )
+        );
+    }
+						
+}
+
 //pesan bergambar
 if($message['type']=='text') {
 	    if ($command == '/shalat') {
@@ -120,21 +137,6 @@ if($message['type']=='text') {
 				)
 		)
 	);
-						
-} else if ($message['type']=='text') {
-	    if ($command == '/moviep') {
-
-        $result = cuaca($options);
-        $balas = array(
-            'replyToken' => $replyToken,
-            'messages' => array(
-                array(
-                    'type' => 'text',
-                    'text' => $result
-                )
-            )
-        );
-    }
 						
 }
 if (isset($balas)) {
