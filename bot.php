@@ -129,7 +129,7 @@ function jooxmp3($keyword) {
 ;
     $response = Unirest\Request::get("$uri");
     $json = json_decode($response->raw_body, true);
-	$result .= $json['audio']['mp3'];
+	$result = $json['audio']['mp3'];
     return $result;
 }
 #-------------------------[Function]-------------------------#
