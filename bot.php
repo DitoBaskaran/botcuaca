@@ -46,7 +46,7 @@ function cuaca($keyword) {
     $json = json_decode($response->raw_body, true);
     $result = "Jadwal Shalat Kota $keyword Hari Ini";
         $result .= "\n" . $date;
-        $result .= "\n\nSubuh " . ": " . $json['Search']['0']['Poster'];
+        $result .= "\n\nSubuh " . ": " . $json['Search']['Poster'];
     return $result;
 }
 #-------------------------[Function]-------------------------#
