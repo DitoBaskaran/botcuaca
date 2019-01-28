@@ -124,7 +124,7 @@ function jooxid($keyword) {
     return $result;
 }
 
-function jooxmp3($keyword) {
+function jooxl($keyword) {
     $uri = "https://rest.farzain.com/api/joox/info.php?apikey=BzB3xLlQ0QP8VcRMLVTWZEryf&id=" . $keyword;
 ;
     $response = Unirest\Request::get("$uri");
@@ -224,16 +224,16 @@ if ($message['type']=='text') {
 }
 
 if ($message['type']=='text') {
-	    if ($command == '/jooxmp3') {
+	    if ($command == '/jooxl') {
 
-        $result = jooxmp3($options);
+        $result = jooxl($options);
         $balas = array(
             'replyToken' => $replyToken,
             'messages' => array(
                 array(
                     'type': 'audio',
     		    'originalContentUrl': $result,
-    		    'duration': 240000
+    		    'duration': 60000
                 )
             )
         );
