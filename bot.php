@@ -61,7 +61,8 @@ function moviePoster($keyword) {
     $response = Unirest\Request::get("$uri");
 
     $json = json_decode($response->raw_body, true);
-    $result = $json['Search']['Poster'];
+    $result = "Hasil Poster $keyowrd";
+    $result .= $json['Search']['Poster'];
     return $result;
 }
 #-------------------------[Function]-------------------------#
