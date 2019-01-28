@@ -54,20 +54,15 @@ function cuaca($keyword) {
     return $result;
 }
 
-function moviep($keyword) {
+function moviePoster($keyword) {
     $date = date("d M Y");
-    $uri = "https://time.siswadi.com/pray/" . $keyword;
+    $uri = "http://www.omdbapi.com/?apikey=d6d953bf&s=" . $keyword;
 
     $response = Unirest\Request::get("$uri");
 
     $json = json_decode($response->raw_body, true);
-    $result = "Jadwal Shalat Kota $keyword Hari Ini";
-        $result .= "\n" . $date;
-        $result .= "\n\nSubuh " . ": " . $json['data']['Fajr'];
-        $result .= "\nDzuhur " . ": " . $json['data']['Dhuhr'];
-        $result .= "\nAshar " . ": " . $json['data']['Asr'];
-        $result .= "\nMaghrib " . ": " . $json['data']['Maghrib'];
-        $result .= "\nIsya " . ": " . $json['data']['Isha'];
+    $result = "Hasil Poster $keyword";
+    $result .= $json['Search']['0']['Poster'];
     return $result;
 }
 #-------------------------[Function]-------------------------#
@@ -95,7 +90,7 @@ if ($type == 'join' || $command == '/menu') {
 if ($message['type']=='text') {
 	    if ($command == '/moviep') {
 
-        $result = moviep($options);
+        $result = moviePoster($options);
         $balas = array(
             'replyToken' => $replyToken,
             'messages' => array(
