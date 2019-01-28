@@ -100,6 +100,15 @@ function igp($keyword) {
 	$result .= $json['info']['profile_pict'];
     return $result;
 }
+
+function igd($keyword) {
+    $uri = "https://rest.farzain.com/api/ig_post.php?id=" . $keyword . "&apikey=BzB3xLlQ0QP8VcRMLVTWZEryf";
+;
+    $response = Unirest\Request::get("$uri");
+    $json = json_decode($response->raw_body, true);
+	$result = $json['first_pict'];
+    return $result;
+}
 #-------------------------[Function]-------------------------#
 
 # require_once('./src/function/search-1.php');
@@ -149,6 +158,24 @@ if ($message['type']=='text') {
                 array(
                     'type' => 'text',
                     'text' => $result
+                )
+            )
+        );
+    }
+						
+}
+
+if ($message['type']=='text') {
+	    if ($command == '/igd') {
+
+        $result = igd($options);
+        $balas = array(
+            'replyToken' => $replyToken,
+            'messages' => array(
+                array(
+                    'type' => 'image',
+	            'originalContentUrl' => '$result',
+	            'previewImageUrl' => '$result',
                 )
             )
         );
