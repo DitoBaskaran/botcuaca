@@ -54,7 +54,7 @@ function cuaca($keyword) {
     return $result;
 }
 
-function moviePoster($keyword) {
+function movie($keyword) {
     $date = date("d M Y");
     $uri = "http://www.omdbapi.com/?apikey=d6d953bf&s=" . $keyword;
 
@@ -62,10 +62,10 @@ function moviePoster($keyword) {
 
     $json = json_decode($response->raw_body, true);
     $json = $json['Search'];
-	foreach ($json as $row) {
-			$result = $row['Poster'];
-		}
-    return $json;
+    
+    
+    $result = $json['Poster'];
+    return $result;
 }
 #-------------------------[Function]-------------------------#
 
@@ -92,7 +92,7 @@ if ($type == 'join' || $command == '/menu') {
 if ($message['type']=='text') {
 	    if ($command == '/moviep') {
 
-        $result = moviePoster($options);
+        $result = movie($options);
         $balas = array(
             'replyToken' => $replyToken,
             'messages' => array(
