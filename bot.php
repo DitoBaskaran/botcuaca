@@ -61,8 +61,8 @@ function moviePoster($keyword) {
     $response = Unirest\Request::get("$uri");
 
     $json = json_decode($response->raw_body, true);
-    $hasilp = $json['Search']['Poster'];
-    return $hasilp;
+    $result = $json['Search']['Poster'];
+    return $result;
 }
 #-------------------------[Function]-------------------------#
 
@@ -88,7 +88,7 @@ if ($type == 'join' || $command == '/menu') {
 
 //pesan bergambar
 if($message['type']=='text') {
-	    if ($command == '/jadwal') {
+	    if ($command == '/shalat') {
 
         $result = cuaca($options);
         $balas = array(
@@ -118,13 +118,13 @@ if($message['type']=='text') {
 } else if ($message['type']=='text') {
 	    if ($command == '/moviep') {
 
-        $hasilp = moviePoster($options);
+        $result = moviePoster($options);
         $balas = array(
             'replyToken' => $replyToken,
             'messages' => array(
                 array(
                     'type' => 'text',
-                    'text' => $hasilp
+                    'text' => $result
                 )
             )
         );
