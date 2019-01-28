@@ -64,9 +64,9 @@ function movie($keyword) {
     $json = $json['Search'];
     foreach ($json as $row) {
 	$result = "Halo Kak ^_^ Ini ada Poster Untuk Film ";
-	$result .= $json['Title'];
-	$result .= "\n\n Link : ";
-	$result .= $json['Poster'];
+	$result .= $row['Title'];
+	$result .= "\n\nLink : ";
+	$result .= $row['Poster'];
     return $result;
      }
 }
