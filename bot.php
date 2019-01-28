@@ -85,18 +85,18 @@ function cuaca($keyword) {
     return $result;
 }
 
-function joox($keyword) {
-    $uri = "https://rest.farzain.com/api/joox.php?id=" . $keyword . "&apikey=BzB3xLlQ0QP8VcRMLVTWZEryf";
+function igp($keyword) {
+    $uri = "https://rest.farzain.com/api/ig_profile.php?id=" . $keyword . "&apikey=BzB3xLlQ0QP8VcRMLVTWZEryf";
 ;
     $response = Unirest\Request::get("$uri");
     $json = json_decode($response->raw_body, true);
-    $result = "Halo Kak ^_^ Ini ada Lagu Berjudul ";
-	$result .= "\n\Penyanyi : ";
-	$result .= $json['info']['penyanyi'];
-	$result .= "\n\nJudul : ";
-	$result .= $json['info']['judul'];
-	$result .= "\n\nAudio : ";
-	$result .= $json['audio']['mp3'];
+    $result = "Halo Kak ^_^ Ini Info Dari ";
+	$result .= "\nUsername : ";
+	$result .= $json['info']['username'];
+	$result .= "\n\nFull Name : ";
+	$result .= $json['info']['full_name'];
+	$result .= "\n\nProfile Pict : ";
+	$result .= $json['info']['profile_pict'];
     return $result;
 }
 #-------------------------[Function]-------------------------#
@@ -139,9 +139,9 @@ if ($message['type']=='text') {
 }
 
 if ($message['type']=='text') {
-	    if ($command == '/joox') {
+	    if ($command == '/igp') {
 
-        $result = joox($options);
+        $result = igp($options);
         $balas = array(
             'replyToken' => $replyToken,
             'messages' => array(
