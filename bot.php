@@ -62,7 +62,7 @@ function moviePoster($keyword) {
 
     $json = json_decode($response->raw_body, true);
     $result = "Hasil Poster $keyword";
-    $result .= $json['Search']['0']['Poster'];
+    $result .= "\n\n" . $json['Search']['Poster'];
     return $result;
 }
 #-------------------------[Function]-------------------------#
