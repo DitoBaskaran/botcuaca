@@ -56,12 +56,12 @@ function cuaca($keyword) {
 
 function moviePoster($keyword) {
     $date = date("d M Y");
-    $uri = "http://www.omdbapi.com/?apikey=d6d953bf&s=" . $keyword;
+    $uri = "http://www.omdbapi.com/?apikey=d6d953bf&s=$keyword;
 
     $response = Unirest\Request::get("$uri");
 
     $json = json_decode($response->raw_body, true);
-    $result = $json['Search']['Poster'];
+    $hasilp = $json['Search']['Poster'];
     return $result;
 }
 #-------------------------[Function]-------------------------#
@@ -118,13 +118,13 @@ if($message['type']=='text') {
 } else if ($message['type']=='text') {
 	    if ($command == '/moviep') {
 
-        $result = moviePoster($options);
+        $hasilp = moviePoster($options);
         $balas = array(
             'replyToken' => $replyToken,
             'messages' => array(
                 array(
                     'type' => 'text',
-                    'text' => $result
+                    'text' => $hasilp
                 )
             )
         );
