@@ -56,7 +56,7 @@ function cuaca($keyword) {
 
 function moviePoster($keyword) {
     $date = date("d M Y");
-    $uri = "http://www.omdbapi.com/?apikey=d6d953bf&s=$keyword;
+    $uri = "http://www.omdbapi.com/?apikey=d6d953bf&s=$keyword";
 
     $response = Unirest\Request::get("$uri");
 
