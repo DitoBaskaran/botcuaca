@@ -109,6 +109,20 @@ function igd($keyword) {
 	$result = $json['first_pict'];
     return $result;
 }
+
+function jooxid($keyword) {
+    $uri = "https://rest.farzain.com/api/joox/search.php?apikey=BzB3xLlQ0QP8VcRMLVTWZEryf&id=" . $keyword;
+;
+    $response = Unirest\Request::get("$uri");
+    $json = json_decode($response->raw_body, true);
+	$result .= "\n\nID : ";
+	$result .= $json['0']['songid'];
+	$result .= "\nJudul : ";
+	$result .= $json['0']['judul'];
+	$result .= "\nPenyanyi : ";
+	$result .= $json['0']['penyanyi'];
+    return $result;
+}
 #-------------------------[Function]-------------------------#
 
 # require_once('./src/function/search-1.php');
@@ -176,6 +190,23 @@ if ($message['type']=='text') {
                     'type' => 'image',
 	            'originalContentUrl' => $result,
 	            'previewImageUrl' => $result
+                )
+            )
+        );
+    }
+						
+}
+
+if ($message['type']=='text') {
+	    if ($command == '/jooxid') {
+
+        $result = jooxid($options);
+        $balas = array(
+            'replyToken' => $replyToken,
+            'messages' => array(
+                array(
+                    'type' => 'text',
+                    'text' => $result
                 )
             )
         );
