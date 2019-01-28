@@ -53,6 +53,17 @@ function cuaca($keyword) {
         $result .= "\nIsya " . ": " . $json['data']['Isha'];
     return $result;
 }
+
+function moviePoster($keyword) {
+    $date = date("d M Y");
+    $uri = "http://www.omdbapi.com/?apikey=d6d953bf&s=" . $keyword;
+
+    $response = Unirest\Request::get("$uri");
+
+    $json = json_decode($response->raw_body, true);
+    $result = $json['Search']['Poster'];
+    return $result;
+}
 #-------------------------[Function]-------------------------#
 
 # require_once('./src/function/search-1.php');
@@ -94,15 +105,30 @@ if($message['type']=='text') {
 }else if($message['type']=='sticker')
 {	
 	$balas = array(
-							'replyToken' => $replyToken,														
-							'messages' => array(
-								array(
-										'type' => 'text',									
-										'text' => 'Makasih Kak Stikernya ^_^'										
-									
-									)
-							)
-						);
+		'replyToken' => $replyToken,														
+		'messages' => array(
+			array(
+					'type' => 'text',									
+					'text' => 'Makasih Kak Stikernya ^_^'										
+
+				)
+		)
+	);
+						
+} ($message['type']=='text') {
+	    if ($command == '/moviep') {
+
+        $result = moviePoster($options);
+        $balas = array(
+            'replyToken' => $replyToken,
+            'messages' => array(
+                array(
+                    'type' => 'text',
+                    'text' => $result
+                )
+            )
+        );
+    }
 						
 }
 if (isset($balas)) {
