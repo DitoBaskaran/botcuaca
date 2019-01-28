@@ -44,13 +44,13 @@ function cuaca($keyword) {
     $response = Unirest\Request::get("$uri");
 
     $json = json_decode($response->raw_body, true);
-    $result = "Jadwal Shalat Kota $keyword Hari Ini";
-        for ($i = 0; $i < count($json); $i++) {
-		$result = "Hasil Poster $keyword";
-		$result .= $json['Search']['0']['Poster'];
-    		return $result;
-    }
-}
+	$indeks=0; 
+	$i = 1;
+	while($indeks < count($json_result['Search'])){ 
+	$result = "Jadwal Shalat Kota $keyword Hari Ini";
+	$result .= $json['Search'][$indeks]['Poster'];
+	return $kategori
+	}
 #-------------------------[Function]-------------------------#
 
 # require_once('./src/function/search-1.php');
