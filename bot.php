@@ -174,8 +174,8 @@ if ($message['type']=='text') {
             'messages' => array(
                 array(
                     'type' => 'image',
-	            'originalContentUrl' => '$result',
-	            'previewImageUrl' => '$result',
+	            'originalContentUrl' => 'https://dstoremedia.shopp.web.id/img/pv1.png',
+	            'previewImageUrl' => 'https://dstoremedia.shopp.web.id/img/pv1.png',
                 )
             )
         );
