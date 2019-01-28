@@ -125,11 +125,11 @@ function jooxid($keyword) {
 }
 
 function jooxl($keyword) {
-    $uri = "https://rest.farzain.com/api/joox/info.php?apikey=BzB3xLlQ0QP8VcRMLVTWZEryf&id=" . $keyword;
+    $uri = "https://rest.farzain.com/api/joox/info.php?apikey=BzB3xLlQ0QP8VcRMLVTWZEryf&songid=" . $keyword;
 ;
     $response = Unirest\Request::get("$uri");
     $json = json_decode($response->raw_body, true);
-	$result = $json['audio']['mp3'];
+	$result = $json['lirik'];
     return $result;
 }
 #-------------------------[Function]-------------------------#
@@ -231,9 +231,8 @@ if ($message['type']=='text') {
             'replyToken' => $replyToken,
             'messages' => array(
                 array(
-                    'type': 'audio',
-    		    'originalContentUrl': $result,
-    		    'duration': 60000
+                    'type' => 'text',
+                    'text' => $result
                 )
             )
         );
