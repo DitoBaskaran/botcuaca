@@ -49,7 +49,7 @@ function cuaca($keyword) {
 	while($indeks < count($json['Search'])){ 
 	$result = "Jadwal Shalat Kota $keyword Hari Ini";
 	$result .= $json['Search'][$indeks]['Poster'];
-	return $kategori
+	return $result
 	}
 #-------------------------[Function]-------------------------#
 
