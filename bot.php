@@ -84,6 +84,21 @@ function cuaca($keyword) {
 	$result .= $json['weather']['0']['description'];
     return $result;
 }
+
+function joox($keyword) {
+    $uri = "https://rest.farzain.com/api/joox.php?id=" . $keyword . "&apikey=BzB3xLlQ0QP8VcRMLVTWZEryf";
+;
+    $response = Unirest\Request::get("$uri");
+    $json = json_decode($response->raw_body, true);
+    $result = "Halo Kak ^_^ Ini ada Lagu Berjudul ";
+	$result .= "\n\Penyanyi : ";
+	$result .= $json['info']['penyanyi'];
+	$result .= "\n\nJudul : ";
+	$result .= $json['info']['judul'];
+	$result .= "\n\nAudio : ";
+	$result .= $json['audio']['mp3'];
+    return $result;
+}
 #-------------------------[Function]-------------------------#
 
 # require_once('./src/function/search-1.php');
@@ -110,6 +125,23 @@ if ($message['type']=='text') {
 	    if ($command == '/movie') {
 
         $result = movie($options);
+        $balas = array(
+            'replyToken' => $replyToken,
+            'messages' => array(
+                array(
+                    'type' => 'text',
+                    'text' => $result
+                )
+            )
+        );
+    }
+						
+}
+
+if ($message['type']=='text') {
+	    if ($command == '/joox') {
+
+        $result = joox($options);
         $balas = array(
             'replyToken' => $replyToken,
             'messages' => array(
