@@ -124,17 +124,16 @@ if($message['type']=='text') {
 } else if ($message['type']=='text') {
 	    if ($command == '/moviep') {
 
-        $result = moviePoster($options);
+        $result = cuaca($options);
         $balas = array(
-			'replyToken' => $replyToken,														
-			'messages' => array(
-			array (
-			      'type' => 'image',
-			      'originalContentUrl' => $result,
-			      'previewImageUrl' => $result,
-			    )
-			)
-		);
+            'replyToken' => $replyToken,
+            'messages' => array(
+                array(
+                    'type' => 'text',
+                    'text' => $result
+                )
+            )
+        );
     }
 						
 }
