@@ -62,11 +62,13 @@ function movie($keyword) {
 
     $json = json_decode($response->raw_body, true);
     $json = $json['Search'];
-    $result = "Halo Kak ^_^ Ini ada Poster Untuk Film ";
+    foreach ($json as $row) {
+	$result = "Halo Kak ^_^ Ini ada Poster Untuk Film ";
 	$result .= $json['Title'];
-	$result .= "\n\Link : ";
-	$result .= $json['Title'];
+	$result .= "\n\n Link : ";
+	$result .= $json['Poster'];
     return $result;
+     }
 }
 
 function cuaca($keyword) {
