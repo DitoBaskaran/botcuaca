@@ -102,7 +102,7 @@ if($message['type']=='text') {
         );
     }
 
-}else if($message['type']=='sticker')
+} else if($message['type']=='sticker')
 {	
 	$balas = array(
 		'replyToken' => $replyToken,														
@@ -115,7 +115,7 @@ if($message['type']=='text') {
 		)
 	);
 						
-} ($message['type']=='text') {
+} else if ($message['type']=='text') {
 	    if ($command == '/moviep') {
 
         $result = moviePoster($options);
