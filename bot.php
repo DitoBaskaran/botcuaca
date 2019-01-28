@@ -37,7 +37,7 @@ if (count($pesan_datang) > 2) {
 }
 
 #-------------------------[Function]-------------------------#
-function cuaca($keyword) {
+function shalat($keyword) {
     $date = date("d M Y");
     $uri = "https://time.siswadi.com/pray/" . $keyword;
 
@@ -65,6 +65,20 @@ function movie($keyword) {
     
     
     $result = $json['Poster'];
+    return $result;
+}
+
+function cuaca($keyword) {
+    $uri = "http://api.openweathermap.org/data/2.5/weather?q=" . $keyword . ",ID&units=metric&appid=e172c2f3a3c620591582ab5242e0e6c4";
+    $response = Unirest\Request::get("$uri");
+    $json = json_decode($response->raw_body, true);
+    $result = "Halo Kak ^_^ Ini ada Ramalan Cuaca Untuk Daerah ";
+	$result .= $json['name'];
+	$result .= " Dan Sekitarnya";
+	$result .= "\n\nCuaca : ";
+	$result .= $json['weather']['0']['main'];
+	$result .= "\nDeskripsi : ";
+	$result .= $json['weather']['0']['description'];
     return $result;
 }
 #-------------------------[Function]-------------------------#
@@ -106,11 +120,28 @@ if ($message['type']=='text') {
 						
 }
 
+if ($message['type']=='text') {
+	    if ($command == '/cuaca') {
+
+        $result = cuaca($options);
+        $balas = array(
+            'replyToken' => $replyToken,
+            'messages' => array(
+                array(
+                    'type' => 'text',
+                    'text' => $result
+                )
+            )
+        );
+    }
+						
+}
+
 //pesan bergambar
 if($message['type']=='text') {
 	    if ($command == '/shalat') {
 
-        $result = cuaca($options);
+        $result = shalat($options);
         $balas = array(
             'replyToken' => $replyToken,
             'messages' => array(
