@@ -62,9 +62,10 @@ function movie($keyword) {
 
     $json = json_decode($response->raw_body, true);
     $json = $json['Search'];
-    
-    
-    $result = $json['Poster'];
+    $result = "Halo Kak ^_^ Ini ada Poster Untuk Film ";
+	$result .= $json['Title'];
+	$result .= "\n\Link : ";
+	$result .= $json['Title'];
     return $result;
 }
 
@@ -104,7 +105,7 @@ if ($type == 'join' || $command == '/menu') {
 }
 
 if ($message['type']=='text') {
-	    if ($command == '/moviep') {
+	    if ($command == '/movie') {
 
         $result = movie($options);
         $balas = array(
