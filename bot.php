@@ -62,7 +62,7 @@ function moviePoster($keyword) {
 
     $json = json_decode($response->raw_body, true);
     $result = "Hasil Poster $keyword";
-    $result .= "\n\n" . $json['Search']count(['Poster']);
+    $result .= "\n\n" . $json['Search']['0']['Poster'];
     return $result;
 }
 #-------------------------[Function]-------------------------#
@@ -95,8 +95,9 @@ if ($message['type']=='text') {
             'replyToken' => $replyToken,
             'messages' => array(
                 array(
-                    'type' => 'text',
-                    'text' => $result
+                    'type' => 'image',
+	            'originalContentUrl' => $result,
+                    'previewImageUrl' => $result,
                 )
             )
         );
