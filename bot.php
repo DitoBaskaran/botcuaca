@@ -46,7 +46,16 @@ function cuaca($keyword) {
     $json = json_decode($response->raw_body, true);
     $result = "Jadwal Shalat Kota $keyword Hari Ini";
         $result .= "\n" . $date;
-        $result .= "\n\nSubuh " . ": " . $json['Search']['Poster'];
+        $result .= "\n\nSubuh " . ": " . $json['Search']['0']['Poster'];
+	$result .= "\n\nSubuh " . ": " . $json['Search']['1']['Poster'];
+	$result .= "\n\nSubuh " . ": " . $json['Search']['2']['Poster'];
+	$result .= "\n\nSubuh " . ": " . $json['Search']['3']['Poster'];
+	$result .= "\n\nSubuh " . ": " . $json['Search']['4']['Poster'];
+	$result .= "\n\nSubuh " . ": " . $json['Search']['5']['Poster'];
+	$result .= "\n\nSubuh " . ": " . $json['Search']['6']['Poster'];
+	$result .= "\n\nSubuh " . ": " . $json['Search']['7']['Poster'];
+	$result .= "\n\nSubuh " . ": " . $json['Search']['8']['Poster'];
+	$result .= "\n\nSubuh " . ": " . $json['Search']['9']['Poster'];
     return $result;
 }
 #-------------------------[Function]-------------------------#
