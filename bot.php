@@ -97,9 +97,8 @@ if ($message['type']=='text') {
             'replyToken' => $replyToken,
             'messages' => array(
                 array(
-                    'type' => 'image',
-	            'originalContentUrl' => '$result',
-                    'previewImageUrl' => '$result',
+                    'type' => 'text',
+                    'text' => $result
                 )
             )
         );
