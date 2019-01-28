@@ -56,13 +56,18 @@ function cuaca($keyword) {
 
 function moviePoster($keyword) {
     $date = date("d M Y");
-    $uri = "http://www.omdbapi.com/?apikey=d6d953bf&s=" . $keyword;
+    $uri = "https://time.siswadi.com/pray/" . $keyword;
 
     $response = Unirest\Request::get("$uri");
 
     $json = json_decode($response->raw_body, true);
-    $result = "Hasil Poster $keyword";
-    $result .= $json['Search']['0']['Poster'];
+    $result = "Jadwal Shalat Kota $keyword Hari Ini";
+        $result .= "\n" . $date;
+        $result .= "\n\nSubuh " . ": " . $json['data']['Fajr'];
+        $result .= "\nDzuhur " . ": " . $json['data']['Dhuhr'];
+        $result .= "\nAshar " . ": " . $json['data']['Asr'];
+        $result .= "\nMaghrib " . ": " . $json['data']['Maghrib'];
+        $result .= "\nIsya " . ": " . $json['data']['Isha'];
     return $result;
 }
 #-------------------------[Function]-------------------------#
