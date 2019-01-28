@@ -63,10 +63,7 @@ function movie($keyword) {
     $json = json_decode($response->raw_body, true);
     $json = $json['Search'];
     foreach ($json as $row) {
-	$result = "Halo Kak ^_^ Ini ada Poster Untuk Film ";
-	$result .= $row['Title'];
-	$result .= "\n\nLink : ";
-	$result .= $row['Poster'];
+	$result = $row['Poster'];
     return $result;
      }
 }
@@ -157,8 +154,9 @@ if ($message['type']=='text') {
             'replyToken' => $replyToken,
             'messages' => array(
                 array(
-                    'type' => 'text',
-                    'text' => $result
+                    'type' => 'image',
+	            'originalContentUrl' => $result,
+	            'previewImageUrl' => $result
                 )
             )
         );
