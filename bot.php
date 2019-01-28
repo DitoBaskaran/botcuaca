@@ -90,12 +90,13 @@ function igp($keyword) {
 ;
     $response = Unirest\Request::get("$uri");
     $json = json_decode($response->raw_body, true);
-    $result = "Halo Kak ^_^ Ini Info Dari ";
-	$result .= "\nUsername : ";
+    $result = "Halo Kak ^_^ Ini Info Dari @";
 	$result .= $json['info']['username'];
-	$result .= "\n\nFull Name : ";
+	$result .= "\n\nUsername : @";
+	$result .= $json['info']['username'];
+	$result .= "\nFull Name : ";
 	$result .= $json['info']['full_name'];
-	$result .= "\n\nProfile Pict : ";
+	$result .= "\nProfile Pict : ";
 	$result .= $json['info']['profile_pict'];
     return $result;
 }
