@@ -115,12 +115,7 @@ function jooxid($keyword) {
 ;
     $response = Unirest\Request::get("$uri");
     $json = json_decode($response->raw_body, true);
-	$result .= "ID : ";
-	$result .= $json['0']['songid'];
-	$result .= "\nJudul : ";
-	$result .= $json['0']['judul'];
-	$result .= "\nPenyanyi : ";
-	$result .= $json['0']['penyanyi'];
+	$result = $json['0']['songid'];
     return $result;
 }
 
